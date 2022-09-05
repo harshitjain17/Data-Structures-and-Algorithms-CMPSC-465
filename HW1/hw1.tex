@@ -1,0 +1,79 @@
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{geometry}
+\usepackage{pslatex}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{enumitem}
+\usepackage{amssymb}
+\geometry{ margin = 1.0in }
+
+%%% TODO modify these variables %%%
+\def\homeworknum{1}
+\def\myname{Harshit Jain}
+\def\myaccessid{hmj5262}
+\def\myrecitation{8}
+%%%%
+
+\pagestyle{fancy}
+\lhead{{\bf CMPSC 465 Fall 2022}}
+\chead{{\bf Assignment~\homeworknum}}
+\rhead{{\bf \today}}
+
+\newcounter{problemid}
+%\stepcounter{problemid}
+\def\newproblem{\clearpage\newpage{\bf Problem~\arabic{problemid}\stepcounter{problemid}}\hfill\fbox{\parbox{0.16\textwidth}{\bf Points:}}\par}
+
+\setlength\parindent{0em}
+\setlength\parskip{8pt}
+\setlength{\fboxsep}{6pt}
+
+
+\begin{document}
+
+\framebox[\textwidth]{
+	\parbox{0.96\textwidth}{
+		\parbox{0.12\textwidth}{\bf Name:}\parbox{0.6\textwidth}{\myname}\\
+		\parbox{0.12\textwidth}{\bf Access ID:}\parbox{0.6\textwidth}{\myaccessid}\\
+		\parbox{0.12\textwidth}{\bf Recitation:}\parbox{0.6\textwidth}{\myrecitation}
+	}
+}
+
+
+%% your solutions %%%
+
+\newproblem
+\textbf{Acknowledgements}
+\begin{enumerate}[label=(\alph*)]
+    \item I did not work in a group.
+    \item I did not consult without anyone my group members.
+    \item I did not consult any non-class materials.
+\end{enumerate}
+
+
+% PROBEM 1
+\newproblem
+\textbf{Compare Growth Rates}
+\begin{enumerate}[label=(\alph*)]
+    \item $ n^{1.5} = \Omega (n^{1.3}) \; ~ \because n^{1.3} < n^{1.5} $
+    \item $ 2^{n-1} = \Theta (2^{n}) \; ~ \because 2^{n-1} = \frac{2^{n}}{2} $ and constants (in this case, $\frac{1}{2}$) does not matter
+    \item $ n^{1.3logn} = \Omega (n^{1.5}) \; ~ \because$ asymptotically $n^{1.3logn} > n^{1.5}$
+    \item $ 3^{n} = \Omega (n \cdot 2^{n}) \; ~ \because$ asymptotically $3^{n} > n \cdot 2^{n}$
+    \item $ (logn)^{100} = O (n^{0.1}) \; ~ \because $ power of $ logn$ will only weaken the infinity of $logn$ and $n^{0.1}>(logn)^{100}$
+    \item $ n = \Omega ((logn)^{log(logn)}) \; ~ \because $ infinity of $(logn)^{log(logn)} > $ infinity of $n$
+    \item $ 2^{n} = \Omega (n!) \; ~ \because $ infinity of exponential function is greater than the infinity of factorial function  
+    \item $ log(e^{n}) = O (n \cdot logn) \; ~ \because log(e^{n}) = n $ and we know that $n < nlogn$
+    \item $ n + logn = \Theta (n + (logn)^2) \; ~ \because $ dominating term is $n$ and powers of $logn$ will not affect infinities
+    \item $ 5n + \sqrt{n} = \Omega (logn + n) \; ~ \because $ comparable functions are $\sqrt{n}$ and $logn$; $\sqrt{n} > logn$
+\end{enumerate}
+
+% PROBLEM 2
+\newproblem
+
+
+\newproblem
+Your solution starts here ...
+
+
+\end{document}
