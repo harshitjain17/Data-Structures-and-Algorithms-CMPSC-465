@@ -132,5 +132,15 @@ $P(i)$ be the statement that $R(i) \geq 3^{i/2}$ $\forall$ $i \geq 2$.
 \newproblem
 \textbf{Big Oh Definitions}
 
+\underline{Definition 1}:
+It says that, after a certain point $(n=n_0)$, $f(n) < g(n)$.
+As Big-Oh gives the strict upper bound, then $g(n) \geq f(n)$ and this is possible iff $c_1$ is a positive constant i.e. $c_1>0$ and provided that $n_0$ cannot be a negative value.\\
+So, if $f(n) \leq c_1 \cdot g(n)$ where $c_1>0$, then $f(n)=O_1(g(n))$ where $n>n_0$ and $n_0>0$.
+
+\underline{Definition 2}:
+It says that, all the Big-Oh conditions should be satisfied i.e. $n_0>0$ and $c_2$ should be positive value i.e. $c_2>0$.\\
+So, if $f(n) \leq c_2 \cdot g(n)$ where $c_2>0$, then $f(n)=O_2(g(n))$ where $n>n_0$ and $n_0>0$.
+
+From above, $f(n) = O_1(g(n)) = O_2(g(n))$ for all $g$.
 
 \end{document}
