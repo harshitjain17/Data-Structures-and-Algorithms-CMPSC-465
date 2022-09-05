@@ -5,8 +5,12 @@
 \usepackage{fancyhdr}
 \usepackage{graphicx}
 \usepackage{color}
-\usepackage{enumitem}
-\usepackage{amssymb}
+\usepackage{enumitem} % for ordered list labels
+\usepackage{amssymb} % for symbols
+\usepackage{scrextend} % for indentation
+\usepackage{tabto} % for tabs
+\usepackage{graphicx} % for including images
+\graphicspath{ {./} }
 \geometry{ margin = 1.0in }
 
 %%% TODO modify these variables %%%
@@ -68,12 +72,65 @@
     \item $ 5n + \sqrt{n} = \Omega (logn + n) \; ~ \because $ comparable functions are $\sqrt{n}$ and $logn$; $\sqrt{n} > logn$
 \end{enumerate}
 
+
+
 % PROBLEM 2
 \newproblem
+\textbf{Tribonaci Numbers}
+\begin{enumerate}[label=(\alph*)]
+\item We proceed by induction on the variable $i$.
+Let $P(i)$ holds the property for $i$.
+$P(i)$ be the statement that $R(i) \geq 3^{i/2}$ $\forall$ $i \geq 2$.
 
+\underline{Base Case}:
+\begin{addmargin}[2em]{2em}
+    $R(0)=1$, $R(1)=2$, $R(2)=3$ (Given)
+
+    When $i=0$, $ R(0) \geq 3^{0/2} $ [True]
+
+    When $i=1$, $ R(1) \geq 3^{1/2} $ [True]
+
+    When $i=2$, $ R(2) \geq 3^{2/2} $ [True]
+
+    $P(1)$ is True. Therefore, base case is proved.
+\end{addmargin}
+
+\underline{Inductive Hypothesis ($i=k$)}:
+\begin{addmargin}[2em]{2em}
+    Let $k$ be any arbitrary natural number and $k>2$ and we assume that $P(k)$ is True.
+
+    That means, $R(k) \geq 3^{k/2}$.
+\end{addmargin}
+
+
+\underline{Inductive Step ($i=k+1$)}:
+\begin{addmargin}[2em]{2em}
+    We must show that $P(k+1)$ is True. That means, $R(k+1) \geq 3^{(k+1)/2}$.
+
+    Given equation: $R(i) = R(i-1) + R(i-2) + R(i-3)$.
+
+    $R(k+1) = R(k) + R(k-1) + R(k-2)$
+
+    \tabto{40pt} $ \Rightarrow (\geq 3^{k/2}) + (\geq 3^{(k-1)/2}) + (\geq  3^{(k-2)/2})$
+
+    \tabto{40pt} $ \Rightarrow \geq 3^{k/2} (1 + 3^{-1/2} + 3^{-1})$
+
+    \tabto{40pt} $ \Rightarrow \geq 3^{k/2} (1.9)$
+
+    \tabto{40pt} $ \Rightarrow \geq 3^{k/2} (\geq 3^{1/2})$
+
+    \tabto{40pt} $ \Rightarrow \geq 3^{(k+1)/2}$
+
+    Hence, $P(k+1)$ is proved. $\square$
+\end{addmargin}
+
+\item \includegraphics[scale=0.2, angle=-1]{recursionTree.jpeg}
+
+
+\end{enumerate}
 
 \newproblem
-Your solution starts here ...
+\textbf{Big Oh Definitions}
 
 
 \end{document}
