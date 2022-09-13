@@ -60,9 +60,44 @@
 \newproblem
 \textbf{Analyze Running Time}
 \begin{enumerate}
-    \item
-    \item
-    \item
+    \item \textbf{Runtime: $\theta (n^2)$}
+    
+    When $i=1$, then $j=1$. Here, while loop runs for $\frac{n-1}{5}$ times.
+    
+    When $i=2$, then $j=2$. Here, while loop runs for $\frac{n-2}{5}$ times.
+    
+    \tabto{40pt} $\vdots$
+
+    When $i=(n-5)$, then $j=(n-5)$. Here, while loop runs for $1$ time.
+
+    \tabto{40pt} $\vdots$
+
+    When $i=(n-1)$, then $j=(n-1)$. Here, while loop runs for $1$ time.
+
+    Total time: $\frac{n-1}{5} + \frac{n-2}{5} + \dots + \frac{5}{5} + 1 + 1 + 1 + 1 + 1 \Rightarrow \theta (n^2)$
+    
+    \item \textbf{Runtime: $\theta (n^2)$}
+    
+    When $i=1$, then while loop runs from $4$ to $n$. Time $=(n-4)$
+    
+    When $i=2$, then while loop runs from $8$ to $n$. Time $=(n-8)$
+    
+    \tabto{40pt} $\vdots$
+
+    When $i=\frac{n}{4}$, then while loop will run $1$ time. Time $=1$
+
+    For loop will run for total of $n$ times.
+
+    $\Rightarrow \theta (n^2)$
+
+    \item \textbf{Runtime: $\theta (nlogn)$}
+    
+    The main while loop will run for $\theta (logn)$ time as $i$ is reduced to its half after every iteration.
+
+    The inner for loop will run for $\frac{n}{2} + \frac{n}{2^2} + \frac{n}{2^3} + \dots + 1 = \theta (n)$
+
+    So, total time $\Rightarrow \theta (nlogn)$
+
 \end{enumerate}
 
 
