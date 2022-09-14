@@ -116,10 +116,83 @@
 \newproblem
 \textbf{Solving recurrences}
 \begin{enumerate}[label=(\alph*)]
-    \item
-    \item
-    \item
-    \item
-    \item
+    \item Height $= \log_2 n$
+    
+    Branching factor $= 2$
+
+    The size of the sub-problems at depth $k = \frac{n}{2^k}$
+
+    Number of sub-problems at depth $k = 2^k$
+
+    Total work done $=$ 
+    
+    \[ \sum_{k=0}^{\log_2 n} (2^k) \cdot (\frac{n}{2^k})^{\frac{1}{2}}
+    \Rightarrow \sqrt{n} \cdot \sum_{k=0}^{\log_2 n} (2^\frac{k}{2})
+    \Rightarrow \sqrt{n} \cdot \theta (\sqrt{n})
+    \Rightarrow \theta (n) \]
+    
+    (Note that, $\sum_{k=0}^{\log_2 n} (2^\frac{k}{2})$ is a geometric series $= 2^\frac{0}{2} + 2^\frac{1}{2} + \cdots + 2^\frac{\log_2 n}{2} = \theta (\sqrt{n})$)
+    
+    \item Height $= \log_3 n$
+    
+    Branching factor $= 2$
+
+    The size of the sub-problems at depth $k = \frac{n}{3^k}$
+
+    Number of sub-problems at depth $k = 2^k$
+
+    Total work done $=$ 
+    
+    \[ \sum_{k=0}^{\log_3 n} (2^k) \cdot (\frac{n}{3^k})^0
+    \Rightarrow \sum_{k=0}^{\log_3 n} (2^k)
+    \Rightarrow 2^0 + 2^1 + 2^3 + \cdots + 2^{\log_3 n}
+    \Rightarrow \theta (n^{\log_2 3}) \]
+     
+    \item Height $= \log_4 n$
+    
+    Branching factor $= 5$
+
+    The size of the sub-problems at depth $k = \frac{n}{4^k}$
+
+    Number of sub-problems at depth $k = 5^k$
+
+    Total work done $=$ 
+    
+    \[ \sum_{k=0}^{\log_4 n} (5^k) \cdot (\frac{n}{4^k})^1
+    \Rightarrow n \cdot \sum_{k=0}^{\log_4 n} ((\frac{5}{4})^k)
+    \Rightarrow n \cdot ((\frac{5}{4})^0 + (\frac{5}{4})^1 + \cdots + (\frac{5}{4})^{\log_4 n})
+    \Rightarrow n \cdot \theta (\frac{5^{\log_4 n}}{n})
+    \Rightarrow \theta (n^{log_5 4}) \]
+    
+    \item Height $= \log_7 n$
+    
+    Branching factor $= 7$
+
+    The size of the sub-problems at depth $k = \frac{n}{7^k}$
+
+    Number of sub-problems at depth $k = 7^k$
+
+    Total work done $=$ 
+    
+    \[ \sum_{k=0}^{\log_7 n} (7^k) \cdot (\frac{n}{7^k})^1
+    \Rightarrow n \cdot \sum_{k=0}^{\log_7 n} 1
+    \Rightarrow n \cdot \log n
+    \Rightarrow \theta (n \log n) \]
+    
+    \item Height $= \log_3 n$
+    
+    Branching factor $= 9$
+
+    The size of the sub-problems at depth $k = \frac{n}{3^k}$
+
+    Number of sub-problems at depth $k = 9^k$
+
+    Total work done $=$ 
+    
+    \[ \sum_{k=0}^{\log_3 n} (9^k) \cdot (\frac{n}{3^k})^2
+    \Rightarrow n^2 \cdot \sum_{k=0}^{\log_3 n} 1
+    \Rightarrow n^2 \cdot \log n
+    \Rightarrow \theta (n^2 \log n) \]
+
 \end{enumerate}
 \end{document} 
