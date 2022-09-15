@@ -9,7 +9,8 @@
 \usepackage{amssymb} % for symbols
 \usepackage{scrextend} % for indentation
 \usepackage{tabto} % for tabs
-\usepackage{graphicx} % for including images
+\usepackage{amsmath} % for text in equation
+
 \graphicspath{ {./} }
 \geometry{ margin = 1.0in }
 
@@ -105,8 +106,23 @@
 % PROBLEM 2
 \newproblem
 \textbf{Polynomials and Horner’s rule}
+\[ P(x) = a_0 + a_1 x^1 + a_2 x^2 + \cdots + a_n x^n; x = x_0\]
 \begin{enumerate}[label=(\alph*)]
-    \item
+    \item \underline{For Addition:} The Brute Force Algorithm will perform $\textbf{n}$ additions in total.
+    
+    So, Time taken for additions $= O(n)$
+
+    \underline{For Multiplication:} $P(x) = a_0 + [a_1 \cdot x_0] + [a_2 \cdot x_2 \cdot x_2] + \cdots + [a_n \cdot x_n \cdot x_n \cdots (n times)]$
+
+    So, Time taken $= T_n = 1 + 2 + 3 + \cdots + n$
+    
+    \tabto{40pt} $= \frac{n(n+1)}{2}$
+
+    \tabto{40pt} $= \frac{n^2}{2} + \frac{n}{2}$
+
+    \tabto{40pt} $= O(n^2)$
+
+    Therefore, total time complexity for Brute Force Algorithm $= O(n^2) + O(n) = O(n^2)$
     \item
     \item
 \end{enumerate}
