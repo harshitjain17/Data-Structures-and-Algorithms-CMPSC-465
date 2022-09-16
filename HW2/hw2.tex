@@ -91,13 +91,11 @@
 
     $\Rightarrow \theta (n^2)$
 
-    \item \textbf{Runtime: $\theta (nlogn)$}
+    \item \textbf{Runtime: $\theta (n)$}
     
-    The main while loop will run for $\theta (logn)$ time as $i$ is reduced to its half after every iteration.
+    The loop will run for $\frac{n}{2} + \frac{n}{2^2} + \frac{n}{2^3} + \dots = n (\frac{1}{2} + \frac{1}{2^2} + \frac{1}{2^3} + \dots) = \theta (n)$
 
-    The inner for loop will run for $\frac{n}{2} + \frac{n}{2^2} + \frac{n}{2^3} + \dots + 1 = \theta (n)$
-
-    So, total time $\Rightarrow \theta (nlogn)$
+    So, total time $\Rightarrow \theta (n)$
 
 \end{enumerate}
 
@@ -123,8 +121,31 @@
     \tabto{40pt} $= O(n^2)$
 
     Therefore, total time complexity for Brute Force Algorithm $= O(n^2) + O(n) = O(n^2)$
-    \item
-    \item
+
+    \item \[LI = \sum_{i=0}^{n-1} (a_{n-i} \cdot x^{n-i-1})\]
+    
+    \textbf{Initialization:} At first iteration, the Loop Invariant (LI) holds where $z=a_0$.
+    This represents the co-efficient for $P(x)$ with the maximum co-efficient of 0. Therefore, this is True. 
+
+    \textbf{Maintenance:} At $i^{th}$ iteration, $z_i = z_{i-1} + a_i$.
+    
+    Assume that the Loop Invariant holds for $z_{i-1} = \sum_{k=0}^{n-i-1} (a_{k+i+1} \cdot x^k \cdot x_0)$
+    
+    Algebraically, $z_i = (z_{i-1} \cdot x_0) + a_i x_0^0$
+
+    \tabto{74pt} $= \sum_{k=0}^{n-i} a_{k+1} \cdot x_0^k$
+
+    At $i=-1$, we have: $z_{-1} = \sum_{k=0}^{n} a_k \cdot x_0^k$
+
+    Therefore, if LI holds for $i-1$, then it holds for $i$.
+
+    Thus, the algorithm is correct.
+
+
+    \textbf{Termination:} LI holds at the start of the iteration $n$ means tht the algorithm is correct.
+    \item \underline{For Addition:} This algorithm use $O(n)$ additions. 
+    
+    \underline{For Multiplication:} This algorithm use $2n-1 = O(n)$ multiplication.
 \end{enumerate}
 
 
@@ -162,7 +183,7 @@
     \[ \sum_{k=0}^{\log_3 n} (2^k) \cdot (\frac{n}{3^k})^0
     \Rightarrow \sum_{k=0}^{\log_3 n} (2^k)
     \Rightarrow 2^0 + 2^1 + 2^3 + \cdots + 2^{\log_3 n}
-    \Rightarrow \theta (n^{\log_2 3}) \]
+    \Rightarrow \theta (n^{\log_3 2}) \]
      
     \item Height $= \log_4 n$
     
@@ -178,7 +199,7 @@
     \Rightarrow n \cdot \sum_{k=0}^{\log_4 n} ((\frac{5}{4})^k)
     \Rightarrow n \cdot ((\frac{5}{4})^0 + (\frac{5}{4})^1 + \cdots + (\frac{5}{4})^{\log_4 n})
     \Rightarrow n \cdot \theta (\frac{5^{\log_4 n}}{n})
-    \Rightarrow \theta (n^{log_5 4}) \]
+    \Rightarrow \theta (n^{log_4 5}) \]
     
     \item Height $= \log_7 n$
     
