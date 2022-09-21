@@ -67,7 +67,7 @@
     
     So, $\log_b a > d$, we will use case-3 of Master's Theorem:
 
-    $T(n) = \theta (n^{\log_5 11}) = \underline{\theta (n^{1.48})}$
+    $T(n) = \underline{\theta (n^{\log_5 11}) = \theta (n^{1.48})}$
     
     
     \item Here, $d=2.8$ and $\log_b a = \log_2 6 = 2.58$
@@ -81,7 +81,7 @@
     
     So, $\log_b a > d$, we will use case-3 of Master's Theorem:
 
-    $T(n) = \theta (n^{\log_3 5}) = \underline{\theta (n^{1.46})}$
+    $T(n) = \underline{\theta (n^{\log_3 5}) = \theta (n^{1.46})}$
     
     
     \item $T(n) = T(n-2) + \log(n)$
@@ -100,7 +100,9 @@
 
     \tabto{24pt} $ = 1 + \log(n!)$
 
-    \tabto{24pt} $ = \log(n \log(n))$
+    $\log(1) + \cdots + \log(1) < \log(1) + \log(2) + \cdots + \log(n) < \log(n) + \cdots + \log(n) \rightarrow 0 < \log(n!) < \log(n^n)$
+
+    \tabto{24pt} $ = \underline{O(n \log(n))}$
 
 \end{enumerate}
 
@@ -110,6 +112,36 @@
 \newproblem
 \textbf{Sorted Array}
 
+def Search(low, high, $A$):
+
+    \tabto{20pt} if $(\text{low} == \text{high})$:
+
+        \tabto{40pt}if $(A[\text{low}] == \text{low})$:
+
+            \tabto{60pt}return low
+
+        \tabto{40pt}else$:$
+
+            \tabto{60pt}return False
+
+    \tabto{20pt}else$:$
+
+        \tabto{40pt}mid = $(\text{low} + \text{high})//2$
+
+        \tabto{40pt}if $(A[\text{mid}] == \text{mid})$:
+
+            \tabto{60pt}return mid
+
+        \tabto{40pt}elif $(A[\text{mid}] > \text{mid}):$
+
+            \tabto{60pt}return Search$(\text{low}, \text{mid}-1, A)$
+
+        \tabto{40pt}else$:$
+
+            \tabto{60pt}return Search$(\text{mid}+1, \text{high}, A)$
+
+    
+    $\underline{\text{Run-time Analysis}: O(\log(n))}$
 
 
 % PROBLEM 3
