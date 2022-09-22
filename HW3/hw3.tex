@@ -10,6 +10,7 @@
 \usepackage{scrextend} % for indentation
 \usepackage{tabto} % for tabs
 \usepackage{amsmath} % for text in equation
+\usepackage{listings} % to highlight code
 
 \graphicspath{ {./} }
 \geometry{ margin = 1.0in }
@@ -92,15 +93,23 @@
 
     \tabto{80pt} $\vdots$
 
-    \tabto{24pt} $ = [T(n-k) + \log (n-(k-2))] + \cdots + \log(n-2) + \log(n)$
+    \tabto{24pt} $ = [T(n-2k) + \log (n-(2k-2))] + \cdots + \log(n-2) + \log(n)$
 
-    let $k = n$,
+    Let $2k = n$,
 
-    \tabto{24pt} $ = T(0) + \log(2) + \cdots + \log(n)$
+    \tabto{24pt} $ = T(0) + \log(2) + \log(4) + \log(6) + \cdots + \log(n)$
 
-    \tabto{24pt} $ = 1 + \log(n!)$
+    \tabto{24pt} $ = 1 + \log(2 \cdot 4 \cdot 6 \cdot \cdots n)$
 
-    $\log(1) + \cdots + \log(1) < \log(1) + \log(2) + \cdots + \log(n) < \log(n) + \cdots + \log(n) \rightarrow 0 < \log(n!) < \log(n^n)$
+    \tabto{24pt} $ = 1 + \log(2^{n/2} \cdot (1 \cdot 2 \cdot 3 \cdot \cdots \cdot n/2))$
+
+    \tabto{24pt} $ = 1 + (n/2)(\log(2)) + \log((n/2)!)$
+
+    $\Rightarrow \log(1) + \cdots + \log(1) < \log(1) + \log(2) + \cdots + \log(n/2) < \log(n) + \cdots + \log(n)$
+    
+    $\Rightarrow 0 < \log((n/2)!) < \log((n/2)^{n/2})$
+
+    Also, $\log((n/2)^{n/2}) = (n/2) \cdot \log(n/2) = \frac{n \cdot \log_c(n)}{2 \cdot \log_c(2)} = O(n \log(n))$
 
     \tabto{24pt} $ = \underline{O(n \log(n))}$
 
@@ -112,40 +121,69 @@
 \newproblem
 \textbf{Sorted Array}
 
-def Search(low, high, $A$):
+\begin{lstlisting}[language=Python]
+    def Search(low, high, A):
+    if(low == high):
+        if(A[low] == l):
+            return low
+        else:
+            return False
+    else:
+        mid = (low+high)//2
+        if(A[mid] == mid):
+            return mid
+        elif(A[mid] > mid):
+            return Search(low, mid-1, A)
+        else:
+            return Search(mid+1, high, A)
+\end{lstlisting}
 
-    \tabto{20pt} if $(\text{low} == \text{high})$:
-
-        \tabto{40pt}if $(A[\text{low}] == \text{low})$:
-
-            \tabto{60pt}return low
-
-        \tabto{40pt}else$:$
-
-            \tabto{60pt}return False
-
-    \tabto{20pt}else$:$
-
-        \tabto{40pt}mid = $(\text{low} + \text{high})//2$
-
-        \tabto{40pt}if $(A[\text{mid}] == \text{mid})$:
-
-            \tabto{60pt}return mid
-
-        \tabto{40pt}elif $(A[\text{mid}] > \text{mid}):$
-
-            \tabto{60pt}return Search$(\text{low}, \text{mid}-1, A)$
-
-        \tabto{40pt}else$:$
-
-            \tabto{60pt}return Search$(\text{mid}+1, \text{high}, A)$
-
-    
-    $\underline{\text{Run-time Analysis}: O(\log(n))}$
+    \text{Run-time Analysis}: $\underline{O(\log(n))}$
 
 
 % PROBLEM 3
 \newproblem
 \textbf{Linear Time Sorting}
 
+\begin{lstlisting}[language=Python]
+    def linearTimeSorting(unsortedList, k):
+        sortedList = [0 for _ in range(len(unsortedList))]
+        tempList = [0 for _ in range(k+1)]
+        
+        for j in range(0, len(unsortedList)):
+            tempList[unsortedList[j]] += 1
+
+        for i in range(1, k+1):
+            tempList[i] = tempList[i] + tempList[i-1]
+
+        for j in range(len(unsortedList)-1, -1, -1):
+            sortedList[tempList[unsortedList[j]]-1] = unsortedList[j]
+            tempList[unsortedList[j]] -= 1
+
+        return sortedList
+\end{lstlisting}
+
+Initially, the $tempList$ is initialized and it takes $O(k)$ time where $k$ is $\underset{i}{max} (x_i)$.
+
+The first `for loop' is making $tempList[i]$ to hold the number of input elements equal to 
+$i$ for each integer $i = 1, 2, \cdots ,k \Rightarrow$ frequency of elements. It takes $O(n)$ time. 
+
+The second `for loop' is keeping running sum of array $tempList$ to get how many input elements 
+$\leq i$. Tt takes $O(k)$ time.
+
+The third `for loop' placing each element $unsortedList[j]$ in its correct sorted position 
+in the $sortedList$; also we decrement $tempList[unsortedList[j]]$ each time we place a value 
+$unsortedList[j]$ into the $sortedList$. It takes $O(n)$ time.
+
+Therefore, the time is $O(k+n)$. Note that, there is a significance of $\underset{i}{min} (x_i)$ 
+that the $tempList$ starts changing from the index $ = \underset{i}{min} (x_i)$ and not from index $0$ everytime.
+This is because the given list may or may not have the minimum integer as $0$. Depending on what minimum number
+the list contains, the $tempList$ is starting to change from that index instead of $0$.
+
+Therefore, the \textbf{Overall Time Complexity is:} $O(n + \underset{i}{max} (x_i) - \underset{i}{min} (x_i))$
+
+\tabto{200pt} $\Rightarrow \underline{O(n+M)}$ (where $M = \underset{i}{max} (x_i) - \underset{i}{min} (x_i))$
+
+The $\Omega(n \cdot \log(n))$ does not apply in this case because it is not a comparison sort.
+There is no comparison among input elements in this algorithm. 
 \end{document} 
