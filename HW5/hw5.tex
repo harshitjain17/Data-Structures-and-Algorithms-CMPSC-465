@@ -86,11 +86,44 @@
 \textbf{DFS Basics}
 \begin{enumerate}[label=(\alph*)]
     
-    \item
+    \item $A \rightarrow B \rightarrow D \rightarrow E \rightarrow G \rightarrow F \rightarrow C \rightarrow H \rightarrow I$ 
     
     \item 
+    \begin{minipage}{.22 \linewidth}
 
-    \item
+		\begin{tabular}{l | l}
+        
+		$A$ & $(1,12)$\\
+		$B$ & $(2,11)$\\
+		$C$ & $(13,18)$\\
+		$D$ & $(3,6)$\\
+		$E$ & $(4,5)$\\
+		$F$ & $(8,9)$\\
+		$G$ & $(7,10)$\\
+		$H$ & $(14,17)$\\
+		$I$ & $(15,16)$ \\
+		\end{tabular}\\ 
+	\end{minipage}
+
+    \item 
+    \begin{minipage}{.22 \linewidth}
+
+		\begin{tabular}{l | l}
+        
+		\textbf{Edge} & \textbf{Type}\\
+		$(A,B)$ & Tree\\
+		$(A,E)$ & Forward\\
+		$(B,D)$ & Tree\\
+		$(D,E)$ & Tree\\
+		$(E,D)$ & Back\\
+		$(B,G)$ & Tree\\
+		$(G,F)$ & Tree\\
+		$(G,D)$ & Cross\\
+		$(C,H)$ & Tree\\
+		$(H,I)$ & Tree\\
+		$(C,I)$ & Forward\\
+		\end{tabular}\\ 
+	\end{minipage}
 
 \end{enumerate}
 
