@@ -11,6 +11,7 @@
 \usepackage{tabto} % for tabs
 \usepackage{amsmath} % for text in equation
 \usepackage{listings} % to highlight code
+\usepackage{forest, tikz} % to make forest
 
 % Define a custom color
 \definecolor{backcolour}{rgb}{0.95,0.95,0.92}
@@ -177,11 +178,49 @@
 \begin{enumerate}[label=(\alph*)]
     
     \item 
-    
-    \item 
+    \begin{minipage}{.22 \linewidth}
+
+		\begin{tabular}{l | l}
+        
+		$A$ & $(1,14)$\\
+		$B$ & $(15,16)$\\
+		$C$ & $(2,13)$\\
+		$D$ & $(3,10)$\\
+		$E$ & $(11,12)$\\
+		$F$ & $(4,9)$\\
+		$G$ & $(5,6)$\\
+		$H$ & $(7,8)$\\
+		\end{tabular}\\ 
+	\end{minipage}
+
+    \item
+    Sources $:A,B$ $(A,B$ are having most elevated post number$)$
+
+    Sinks $:G,H$ $(G,H$ are having least post number$)$
 
     \item 
+    \begin{tikzpicture}[scale=0.9,auto=center]
+        \node[circle, draw] (b) at (0, 0) {$B$};
+        \node[circle, draw] (a) at (2, 0) {$A$};
+        \node[circle, draw] (c) at (4, 0) {$C$};
+        \node[circle, draw] (e) at (6, 0) {$E$};
+        \node[circle, draw] (d) at (8, 0) {$D$};
+        \node[circle, draw] (f) at (10, 0) {$F$};
+        \node[circle, draw] (h) at (12, 0) {$H$};
+        \node[circle, draw] (g) at (14, 0) {$G$};
+
+        \draw[->, thick] (b) to[bend right] (c);
+        \draw[->, thick] (a) to (c);
+        \draw[->, thick] (c) to (e);
+        \draw[->, thick] (c) to[bend right] (d);
+        \draw[->, thick] (d) to (f);
+        \draw[->, thick] (e) to[bend right] (f);
+        \draw[->, thick] (f) to (h);
+        \draw[->, thick] (f) to[bend right] (g);
+        
+    \end{tikzpicture}
 
     \item 
+    We have three times where we can choose between two vertices on a path so $2^{3} = 8$ lenearization.
 \end{enumerate}
 \end{document} 
