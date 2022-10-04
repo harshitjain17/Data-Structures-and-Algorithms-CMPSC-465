@@ -135,8 +135,38 @@
 \begin{enumerate}[label=(\alph*)]
     
     \item 
+    For our DFS algorithm, if post$(u) <$ post$(v)$, then, 
+
+    \begin{itemize}
+
+        \item Case $1: [\text{pre}(u), \text{post}(u)] [\text{pre}(v), \text{post}(v)]$
+
+        \item Case $2: [\text{pre}(v), [\text{pre}(u), \text{post}(u)] \text{post}(v)]$
+
+    \end{itemize}
+    
+    These are the only $2$ Cases for an undirected graph where post$(u) <$ post$(v)$.
+
+    Since we know there is an edge between these $2$ nodes, Case $1$ can not happen because we must visit all the neighbors
+    of a node before marking it as visited. That means, in Case $1$, node $u$ is marked visited before exploring edge $v$ as
+    it has post$(u) <$ post$(v)$ which is violating the DFS rule of exploring all neighbor nodes before marking it visited.
+    So, Case $2$ is the only possible one, which yields $v$ as the ancestor of $u$. The statement is True.
 
     \item 
+
+    First, Run Depth First Search Algorithm on the tree while also keeping the timestamps for the time when $u$ is started to
+    get explored (pre-number) and the time when $u$ is finished getting explored (post-number). For every node $u$, pre$(u)$
+    denotes the time when we began exploring $u$ and post$(u)$ denote the time when we finished it. This process will take linear
+    time since the $Explore()$ function will never be called on a Node more than once.
+
+    Now, to check whether $u$ an ancestor of $v$, we have to check whether:
+
+    \[\text{pre}(u)<\text{pre}(v) \text{ and post}(u)>\text{post}(v)\]
+
+    If the above condition becomes True, then $u$ is the ancestor of $v$. This condition will itself take a constant time becuase
+    it is just comparing two numbers.
+
+    
 
 \end{enumerate}
 
@@ -147,7 +177,7 @@
 \begin{enumerate}[label=(\alph*)]
     
     \item 
-
+    
     \item 
 
     \item 
