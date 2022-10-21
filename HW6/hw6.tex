@@ -10,6 +10,7 @@
 \usepackage{scrextend} % for indentation
 \usepackage{tabto} % for tabs
 \usepackage{amsmath} % for text in equation
+\usepackage{forest, tikz} % to make forest
 
 \graphicspath{ {./} }
 \geometry{ margin = 1.0in }
@@ -89,25 +90,23 @@
     \textbf{Algorthm:}
 
     ModifiedDijkstra$(G=(V,E))$
-    \tabto{25pt} for all $u \in V$ do
+    \tabto{25pt} \textbf{for} all $u \in V$ \textbf{do}
         \tabto{50pt} dist$(u)$ = $\infty$
         \tabto{50pt} prev$(u)$ = nil
-    \tabto{25pt} end
-
+    \tabto{25pt} \textbf{end}
     \tabto{25pt} dist$(s)=0$
-    
     \tabto{25pt} Let $H$ be a priority queue constructed with all nodes in $V$ using $dist$ as the key
-    \tabto{25pt} while $H$ is not empty do
+    \tabto{25pt} \textbf{while} $H$ is not empty \textbf{do}
         \tabto{50pt} $u=$ deleteMin$(H)$
-        \tabto{50pt} for all edges $(u,v) \in E$ do
-            \tabto{75pt} if dist$(v) >$ max$(\text{dist}(u), \text{l}(u,v))$
+        \tabto{50pt} \textbf{for} all edges $(u,v) \in E$ \textbf{do}
+            \tabto{75pt} \textbf{if} dist$(v) >$ max$(\text{dist}(u), \text{l}(u,v))$ \textbf{then}
                 \tabto{100pt} dist$(v) =$ max$(\text{dist}(u), \text{l}(u,v))$
                 \tabto{100pt} prev$(v) = u$
                 \tabto{100pt} decreaseKey$(H,v)$
-            \tabto{75pt} end
-        \tabto{50pt} end
-    \tabto{25pt} end
-    \tabto{0pt} end
+            \tabto{75pt} \textbf{end}
+        \tabto{50pt} \textbf{end}
+    \tabto{25pt} \textbf{end}
+    \tabto{0pt} \textbf{end}
     
     \textbf{Runtime:} Time complexity is same as Dijkstra's algorithm i.e. $O((|V|+|E|)log|E|)$.
 
@@ -136,8 +135,31 @@
 \begin{enumerate}[label=(\alph*)]
     
     \item 
-    
-    \item 
+    \begin{tikzpicture}[scale=0.9,auto=center]
+        \node[circle, draw] (1) at (0, 0) {$1$};
+        \node[circle, draw] (2) at (3, 0) {$2$};
+        \node[circle, draw] (3) at (3, -3) {$3$};
+        \node[circle, draw] (4) at (0, -3) {$4$};
 
+        \draw[->, thick] (1) to node[anchor=south]{3} (2);
+        \draw[->, thick] (1) to node[anchor=east]{5} (4);
+        \draw[->, thick] (4) to node[anchor=north]{2} (3);
+        \draw[->, thick] (3) to node[anchor=west]{-6} (2);
+    \end{tikzpicture}
+    
+    Starting node $: 1$
+
+    Here, the Dijkstra's algorithm give the shortest path to node $2$ as $3$ however if we follow along the path $\textbf{1} \rightarrow \textbf{4} \rightarrow \textbf{3} \rightarrow \textbf{2}$,
+    we get the shortest path as $(5+2-6) = \textbf{1}$. So, clearly the Dijkstra's algorithm does not produce the correct algorithm.
+
+    \item When the input graph contains negative edges, the following statement from the handout does not necessarily hold:
+    
+    \begin{itemize}
+        \item The $dist$ for values already in $R$ is not modified. 
+        \item Also, because $x$ is in $R$, it must have removed from $H$ during a previous iteration and had all its outgoing edges updated.
+    \end{itemize}
+    The $dist$ for values already in $R$ can still be modified if we encounter a negative edge in a different path which leads to the value already in $R$ and
+    results in the shorter path (value) than the one it had previously in $R$. If the edge weight is negative, then adding an edge
+    can indeed make the path length shorter and this is where Dijkstra's Algorithm fails.
 \end{enumerate}
 \end{document} 
