@@ -11,6 +11,7 @@
 \usepackage{tabto} % for tabs
 \usepackage{amsmath} % for text in equation
 \usepackage{forest, tikz} % to make forest
+\usepackage[ruled, lined, linesnumbered, commentsnumbered, longend]{algorithm2e}
 
 \graphicspath{ {./} }
 \geometry{ margin = 1.0in }
@@ -86,32 +87,47 @@
     (instead of the path length).
     
     Here, we take minimum of max$($visited, not visited adjacent$)$.
-
-    \textbf{Algorthm:}
-
-    ModifiedDijkstra$(G=(V,E))$
-    \tabto{25pt} \textbf{for} all $u \in V$ \textbf{do}
-        \tabto{50pt} dist$(u)$ = $\infty$
-        \tabto{50pt} prev$(u)$ = nil
-    \tabto{25pt} \textbf{end}
-    \tabto{25pt} dist$(s)=0$
-    \tabto{25pt} Let $H$ be a priority queue constructed with all nodes in $V$ using $dist$ as the key
-    \tabto{25pt} \textbf{while} $H$ is not empty \textbf{do}
-        \tabto{50pt} $u=$ deleteMin$(H)$
-        \tabto{50pt} \textbf{for} all edges $(u,v) \in E$ \textbf{do}
-            \tabto{75pt} \textbf{if} dist$(v) >$ max$(\text{dist}(u), \text{l}(u,v))$ \textbf{then}
-                \tabto{100pt} dist$(v) =$ max$(\text{dist}(u), \text{l}(u,v))$
-                \tabto{100pt} prev$(v) = u$
-                \tabto{100pt} decreaseKey$(H,v)$
-            \tabto{75pt} \textbf{end}
-        \tabto{50pt} \textbf{end}
-    \tabto{25pt} \textbf{end}
-    \tabto{0pt} \textbf{end}
     
+    \begin{algorithm}
+        \caption{ModifiedDijkstra}
+
+        \SetKwFunction{ModifiedDijkstra}{ModifiedDijkstra}
+        \SetKwInOut{KwIn}{Input}
+        \SetKwInOut{KwOut}{Output}
+
+        \KwIn{$G = (V,(E, \ell_e))$ (in adjacency list format)}
+        \KwOut{A feasible path exists or not}
+
+        \For {all $u \in V$} {
+
+            dist$(u)$ = $\infty$
+
+            prev$(u)$ = nil
+        }
+        
+        dist$(s)=0$
+
+        Let $H$ be a priority queue constructed with all nodes in $V$ using $dist$ as the key
+        
+        \While{$H$ is not empty} {
+            
+            $u=$ deleteMin$(H)$
+
+            \ForAll {edges $(u,v) \in E$} {
+
+                \If{dist$(v) >$ max$(\text{dist}(u), \text{l}(u,v))$} {
+                    
+                    dist$(v) =$ max$(\text{dist}(u), \text{l}(u,v))$
+                    
+                    prev$(v) = u$
+                    
+                    decreaseKey$(H,v)$
+                }
+            }
+        }
+    
+    \end{algorithm}  
     \textbf{Runtime:} Time complexity is same as Dijkstra's algorithm i.e. $O((|V|+|E|)log|E|)$.
-
-
-
 
 \end{enumerate}
 
