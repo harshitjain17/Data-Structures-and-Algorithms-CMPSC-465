@@ -60,9 +60,27 @@
 
 % PROBLEM 1
 \newproblem
+The given statement is False. If $f$ is a maximum $s-t$ flow in $G$, then $f$ need not to saturate every edge out of $s$ with flow.
 
+Counter Example:
 
+\begin{tikzpicture}[scale=0.9,auto=center]
+	\node[circle, draw] (s) at (0, -1.5) {$s$};
+	\node[circle, draw] (v_1) at (3, 0) {$v_1$};
+	\node[circle, draw] (v_2) at (3, -3) {$v_2$};
+	\node[circle, draw] (t) at (6, -1.5) {$t$};
 
+	\draw[->, thick] (s) to node[anchor=south]{5} (v_1);
+	\draw[->, thick] (v_1) to node[anchor=south]{4} (t);
+	\draw[->, thick] (s) to node[anchor=north]{2} (v_2);
+	\draw[->, thick] (v_2) to node[anchor=north]{1} (t);
+\end{tikzpicture}
+
+Here, the maximum flow on the upper branch will be $4$ since the bottleneck capacity for the path $s \Rightarrow v_1 \Rightarrow t$ is $4$.
+The maximum flow on the lower branch will be $1$ since the bottleneck capacity for the path $s \Rightarrow v_2 \Rightarrow t$ is $1$.
+
+Clearly, both the edges out of $s$ have flow value $f(e) < c_e$ where $c_e$ is the capacity of the edges coming out of node $s$. Therefore,
+\[v(f) = \sum_{e \text{ out of } s} f(e) < \sum_{e \text{ out of } s} c_e = C\]
 
 % PROBLEM 2
 \newproblem
