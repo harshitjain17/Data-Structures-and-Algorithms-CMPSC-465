@@ -89,18 +89,13 @@
 
             }
 
-            \If{$|C| < |C_i|$} {
-
-                continue
-
-            }
         }
 
         return "Min-cut is unique"
         
     \end{algorithm}
 
-    In conclusion, the graph has a unique minimum cut iff $|C| < |Ci|$ $\forall$ $i$. The algorithm takes at most $m + 1$ computing of minimum cuts, and therefore runs in polynomial time.
+    Conversely, if there is a different minimum cut $C'$ in the original graph, there will be some $e_i \in C$ that is not in $C'$, so increasing the capacity of that edge will not change the volume of $C'$, thus $|C| = |C_i|$. In conclusion, the graph has a unique minimum cut iff $|C| < |Ci|$ $\forall$ $i$. The algorithm takes at most $m + 1$ computing of minimum cuts, and therefore runs in polynomial time.
     
 % PROBLEM 2
 \newproblem
