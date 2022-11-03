@@ -1,0 +1,115 @@
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{geometry}
+\usepackage{pslatex}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{enumitem} % for ordered list labels
+\usepackage{amssymb} % for symbols
+\usepackage{scrextend} % for indentation
+\usepackage{tabto} % for tabs
+\usepackage{amsmath} % for text in equation
+\usepackage{forest, tikz} % to make forest
+\usepackage[ruled, lined, linesnumbered, commentsnumbered, longend]{algorithm2e}
+
+\graphicspath{ {./} }
+\geometry{ margin = 1.0in }
+
+%%% TODO modify these variables %%%
+\def\homeworknum{8}
+\def\myname{Harshit Jain}
+\def\myaccessid{hmj5262}
+\def\myrecitation{8}
+%%%%
+
+\pagestyle{fancy}
+\lhead{{\bf CMPSC 465 Fall 2022}}
+\chead{{\bf Assignment~\homeworknum}}
+\rhead{{\bf \today}}
+
+\newcounter{problemid}
+%\stepcounter{problemid}
+\def\newproblem{\clearpage\newpage{\bf Problem~\arabic{problemid}\stepcounter{problemid}}\hfill\fbox{\parbox{0.16\textwidth}{\bf Points:}}\par}
+
+\setlength\parindent{0em}
+\setlength\parskip{8pt}
+\setlength{\fboxsep}{6pt}
+
+
+\begin{document}
+
+\framebox[\textwidth]{
+	\parbox{0.96\textwidth}{
+		\parbox{0.12\textwidth}{\bf Name:}\parbox{0.6\textwidth}{\myname}\\
+		\parbox{0.12\textwidth}{\bf Access ID:}\parbox{0.6\textwidth}{\myaccessid}\\
+		\parbox{0.12\textwidth}{\bf Recitation:}\parbox{0.6\textwidth}{\myrecitation}
+	}
+}
+
+
+%% your solutions %%%
+
+\newproblem
+\textbf{Acknowledgements}
+\begin{enumerate}[label=(\alph*)]
+    \item I did not work in a group.
+    \item I did not consult without anyone my group members.
+    \item I did not consult any non-class materials.
+\end{enumerate}
+
+
+% PROBLEM 1
+\newproblem
+    The minimum cut of a weighted graph is defined as the minimum sum of weights of edges that, when removed from the graph, divide the graph into two sets.
+    
+    \begin{algorithm}
+        \caption{UniqueMinimumCut}
+
+        \SetKwFunction{UniqueMinimumCut}{UniqueMinimumCut}
+        \SetKwInOut{KwIn}{Input}
+        \SetKwInOut{KwOut}{Output}
+
+        \KwIn{$G = (V,(E, \ell_e))$}
+        \KwOut{A unique cut is present or not}
+
+        $C$ = STCut($G$)
+        
+        $|C|$ = CapacityOfCut($C$)
+        
+        \For {$e_i \in C$} {
+
+            capacity($e_i$) $+= 1$
+
+            $|C_i| =$ STCut($C$)
+
+            \If{$|C| == |C_i|$ and $C \neq C_i$} {
+
+                return "Min-cut is not unique"
+
+            }
+
+            \If{$|C| < |C_i|$} {
+
+                continue
+
+            }
+        }
+
+        return "Min-cut is unique"
+        
+    \end{algorithm}
+
+    In conclusion, the graph has a unique minimum cut iff $|C| < |Ci|$ $\forall$ $i$. The algorithm takes at most $m + 1$ computing of minimum cuts, and therefore runs in polynomial time.
+    
+% PROBLEM 2
+\newproblem
+\textbf{}
+
+
+
+% PROBLEM 3
+\newproblem
+\textbf{}
+
+\end{document} 
