@@ -53,8 +53,8 @@
 \newproblem
 \textbf{Acknowledgements}
 \begin{enumerate}[label=(\alph*)]
-    \item I did not work in a group.
-    \item I did not consult without anyone my group members.
+    \item I worked with Yug Jarodiya.
+    \item I did not consult with anyone in my group members.
     \item I did not consult any non-class materials.
 \end{enumerate}
 
@@ -81,7 +81,7 @@
 
             capacity($e_i$) $+= 1$
 
-            $|C_i| =$ STCut($C$)
+            $|C_i| =$ STCut($G$)
 
             \If{$|C| == |C_i|$ and $C \neq C_i$} {
 
@@ -99,12 +99,42 @@
     
 % PROBLEM 2
 \newproblem
-\textbf{}
+\underline{The cut property:} Let A be a subset of edges of some MST of $G = (V,E)$. Let $(S, V-S)$ be a cut that respects $A$. Let $e$ be the lightest edge across the cut. Then $A \cup {e}$ is part of the MST. 
 
+Using the cut property, we can take edge $e$ which is the lightest edge in the subgraph $H$, so we know that edge $e \in T \cap H$ because it is the lightest edge and will preserve among $H$.
+We can take edge $e$ as the cut edge for $H$ and so the cut set is $(H \cap S, H-S)$ which is defined in the cut property above. Because the edge $e \in T \cap H$, that same cut exists in an MST of $H$.
 
 
 % PROBLEM 3
 \newproblem
-\textbf{}
+$\Rightarrow$ Given that $G=(V,E)$ and $V' \subset V$.
+
+$\Rightarrow$ Edge $(u,v)$ is present in $T'$, so this the edge is the least weighted edge here.
+
+$\Rightarrow$ Now, the MST has $V'$ edges and contains no cycle. Now, add the edge $(u,v)$ to the MST.
+
+$\Rightarrow$ The cycle includes edge $(u,v)$ and other edges which are part of $T$, you can notice that one cycle forms in $T$ due to the addition of edge $(u,v)$.
+
+$\Rightarrow$ In this cycle, select an edge where weight is highest, it certainly will not be the edge $(u,v)$ because edge $(u,v)$ weights the least.
+Hence you will select an edge from your earlier minimum spanning tree $T$. Let the edge be $E'$.
+
+$\Rightarrow$ Remove $E'$ from $T$ and add edge $(u,v)$. Let this tree be called $T'$.
+
+$\Rightarrow$ If we remove one edge from this cycle, the connectivity of new tree will still be maintained.
+
+$\Rightarrow$ As there are $V'$ edges, there are no cycles in $T'$. So the $T'$ is the spanning tree.
+
+$\Rightarrow$ In order to be minimum spanning tree, Weight($T'$) $=$ Weight($T$) $-$ ($E'$ - edge $(u, v)$ ).
+
+$\Rightarrow$ As per the follows, we got to know that ($E'$- edge $(u,v)$) is the positive entity.
+
+$\Rightarrow$ Hence Weight($T'$) $<$ Weight($T$), therefore $T$ cannot be minimum spanning tree. ($T'$) is the minimum spanning tree which has edge($u,v$).
+
+$\Rightarrow$ Thus, $T'$ is the minimum spanning tree of $G'$.
 
 \end{document} 
+
+
+
+
+
