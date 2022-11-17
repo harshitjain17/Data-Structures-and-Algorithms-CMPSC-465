@@ -104,13 +104,13 @@ Total bits needed to represent optimal preﬁx-free code on $C =$
     
     $H =$ priority queue ordered by $f$;
     
-    \For {$i= 1 \text{ in } n$} {
+    \For {$i= 1 \text{ to } n$} {
         
         insert($H$, $i$);
     
     }
 
-    \For {$k= (n + 1) \text{ in } (2n - \lc \frac{n}{2} \rc)$} {
+    \For {$k= (n + 1) \text{ to } (2n - \lc \frac{n}{2} \rc)$} {
         
         $i=$ extract min($H$);
         
