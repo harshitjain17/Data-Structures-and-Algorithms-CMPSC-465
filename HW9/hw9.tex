@@ -71,13 +71,13 @@
 
 \underline{Proof:}
 
-An optimal prefix-free code on $C$ has an associated full binary tree with $n$ leaves and $(n-1)$ internal vertices. These tree can be coded by a sequence of  $n+(n-1) = (2n - 1)$ bits.
+$\Rightarrow$ An optimal prefix-free code on $C$ has an associated full binary tree with $n$ leaves and $(n-1)$ internal vertices. This tree can be coded by a sequence of  $n+(n-1) = (2n - 1)$ bits.
 
-Height of full binary tree = $\lc \log n \rc$
+$\Rightarrow$ Height of full binary tree = $\lc \log n \rc$
 
-To associate the $n$ members of $C\{0,1,...,n-1\}$ with the $n$ leaves of the tree, which can be done by listing them in the order in which preorder traversal encounters them, $\lc \log n\rc$ is enough bits to represent each of the $n$ members of $C$, and no delimiters are needed if each is allocated $\lc \log n \rc$ bits. For $n$ leaves, it require $n \lc \log n\rc $ bits to represent.
+$\Rightarrow$ To associate the $n$ members of $C\{0,1,...,n-1\}$ with the $n$ leaves of the tree, which can be done by listing them in the order in which pre-order traversal encounters them, $\lc \log n\rc$ is enough bits to represent each of the $n$ members of $C$, and no delimiters are needed if each is allocated $\lc \log n \rc$ bits. This is because, each member in $C$ (leaf of the tree) has the maximum possible depth of $\lc \log n \rc$ in a full binary tree. For $n$ leaves, it require $n \lc \log n\rc $ bits to represent.
 
-Total bits needed to represent optimal preﬁx-free code on $C =$
+$\Rightarrow$ Total bits needed to represent optimal preﬁx-free code on $C =$
 \[ n \emph{\text{ (for leaves)}} + (n - 1) \emph{\text{ (for internal nodes)}} + n \lc \log n \rc \Rightarrow \underline{2n - 1 + n \lc \log n \rc \text{ bits}} \]
 
 % PROBLEM 2
