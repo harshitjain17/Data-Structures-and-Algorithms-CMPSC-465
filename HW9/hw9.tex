@@ -1,0 +1,137 @@
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{geometry}
+\usepackage{pslatex}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{enumitem} % for ordered list labels
+\usepackage{amssymb} % for symbols
+\usepackage{scrextend} % for indentation
+\usepackage{tabto} % for tabs
+\usepackage{amsmath} % for text in equation
+\usepackage{forest, tikz} % to make forest
+\usepackage{mathtools}
+\usepackage[ruled, lined, linesnumbered, commentsnumbered, longend]{algorithm2e}
+
+\graphicspath{ {./} }
+\geometry{ margin = 1.0in }
+
+%%% TODO modify these variables %%%
+\def\homeworknum{9}
+\def\myname{Harshit Jain}
+\def\myaccessid{hmj5262}
+\def\myrecitation{8}
+\def\lc{\left\lceil}   
+\def\rc{\right\rceil}
+%%%%
+
+\pagestyle{fancy}
+\lhead{{\bf CMPSC 465 Fall 2022}}
+\chead{{\bf Assignment~\homeworknum}}
+\rhead{{\bf \today}}
+
+\newcounter{problemid}
+%\stepcounter{problemid}
+\def\newproblem{\clearpage\newpage{\bf Problem~\arabic{problemid}\stepcounter{problemid}}\hfill\fbox{\parbox{0.16\textwidth}{\bf Points:}}\par}
+
+\setlength\parindent{0em}
+\setlength\parskip{8pt}
+\setlength{\fboxsep}{6pt}
+
+
+\begin{document}
+
+\framebox[\textwidth]{
+	\parbox{0.96\textwidth}{
+		\parbox{0.12\textwidth}{\bf Name:}\parbox{0.6\textwidth}{\myname}\\
+		\parbox{0.12\textwidth}{\bf Access ID:}\parbox{0.6\textwidth}{\myaccessid}\\
+		\parbox{0.12\textwidth}{\bf Recitation:}\parbox{0.6\textwidth}{\myrecitation}
+	}
+}
+
+
+%% your solutions %%%
+
+\newproblem
+\textbf{Acknowledgements}
+\begin{enumerate}[label=(\alph*)]
+    \item I worked with Yug Jarodiya.
+    \item I did not consult with anyone in my group members.
+    \item I did not consult any non-class materials.
+\end{enumerate}
+
+
+% PROBLEM 1
+\newproblem
+
+\underline{Given:} A Set $C = \{0,1,...,n-1\}$ of characters
+
+\underline{To show:} Represent any optimal preﬁx-free code on $C$ using only $(2n - 1 + n \lc \log n \rc)$ bits
+
+\underline{Proof:}
+
+An optimal prefix-free code on $C$ has an associated full binary tree with $n$ leaves and $(n-1)$ internal vertices. These tree can be coded by a sequence of  $n+(n-1) = (2n - 1)$ bits.
+
+Height of full binary tree = $\lc \log n \rc$
+
+To associate the $n$ members of $C\{0,1,...,n-1\}$ with the $n$ leaves of the tree, which can be done by listing them in the order in which preorder traversal encounters them, $\lc \log n\rc$ is enough bits to represent each of the $n$ members of $C$, and no delimiters are needed if each is allocated $\lc \log n \rc$ bits. For $n$ leaves, it require $n \lc \log n\rc $ bits to represent.
+
+Total bits needed to represent optimal preﬁx-free code on $C =$
+\[ n \emph{\text{ (for leaves)}} + (n - 1) \emph{\text{ (for internal nodes)}} + n \lc \log n \rc \Rightarrow \underline{2n - 1 + n \lc \log n \rc \text{ bits}} \]
+
+% PROBLEM 2
+\newproblem
+\underline{The Idea:} Put more frequent symbols at smaller depth
+
+\underline{Greedy approach:} Continually merge least frequent symbols/nodes until you have a full ternary tree encoding all symbols. In this case, take the three lowest frequency symbols, and merge them into one root $R$. Then from the set of the remaining nodes and $R$, take the three lowest nodes and merge them continuously until a full ternary tree is made.
+
+\underline{Optimal Proof:} Suppose we have a tree $T$ with three lowest frequent symbols not as deep as possible. Then at least one has a smaller depth. Switch it with one of the deepest nodes that is more frequent.This improves the encoding length. Thus $T$ is not optimal. Since $T$ is not optimal, then we know that the three lowest frequencies must be at the largest depth. 
+
+\begin{algorithm}
+    
+    \caption{Ternary Huffman Algorithm}
+
+    \SetKwInOut{KwIn}{Input}
+    \SetKwInOut{KwOut}{Output}
+
+    \KwIn{$f = f[1],\cdots,f[n]$; $\Gamma$ has $n$ symbols}
+    \KwOut{$T$}
+
+    
+    
+    $T =$ empty tree;
+    
+    $H =$ priority queue ordered by $f$;
+    
+    \For {$i= 1 \text{ in } n$} {
+        
+        insert($H$, $i$);
+    
+    }
+
+    \For {$k= (n + 1) \text{ in } (2n - \lc \frac{n}{2} \rc)$} {
+        
+        $i=$ extract min($H$);
+        
+        $j=$ extract min($H$);
+        
+        $k=$ extract min($H$);
+        
+        Create a node $z$ in $T$ with children $i,j, \text{ and } k$ ;
+        
+        $f$[$z$]= $f$[$i$] $+$ $f$[$j$] $+$ $f$[$k$];
+        
+        insert($H$, $z$);
+    
+    }
+
+    return $T$
+
+\end{algorithm}
+
+% PROBLEM 3
+\newproblem
+
+
+\end{document} 
