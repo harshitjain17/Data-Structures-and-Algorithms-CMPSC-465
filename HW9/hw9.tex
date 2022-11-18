@@ -75,7 +75,7 @@ $\Rightarrow$ An optimal prefix-free code on $C$ has an associated full binary t
 
 $\Rightarrow$ Height of full binary tree = $\lc \log n \rc$
 
-$\Rightarrow$ To associate the $n$ members of $C\{0,1,...,n-1\}$ with the $n$ leaves of the tree, which can be done by listing them in the order in which pre-order traversal encounters them, $\lc \log n\rc$ is enough bits to represent each of the $n$ members of $C$, and no delimiters are needed if each is allocated $\lc \log n \rc$ bits. This is because, each member in $C$ (leaf of the tree) has the maximum possible depth of $\lc \log n \rc$ in a full binary tree. For $n$ leaves, it require $n \lc \log n\rc $ bits to represent.
+$\Rightarrow$ To associate the $n$ members of $C\{0,1,...,n-1\}$ with the $n$ leaves of the tree, which can be done by listing them in the order in which pre-order traversal encounters them, $\lc \log n\rc$ is enough bits to represent each of the $n$ members of $C$. This is because, each member in $C$ (leaf of the tree) has the maximum possible depth of $\lc \log n \rc$ in a full binary tree. For $n$ leaves, it require $n \lc \log n\rc $ bits to represent.
 
 $\Rightarrow$ Total bits needed to represent optimal preﬁx-free code on $C =$
 \[ n \emph{\text{ (for leaves)}} + (n - 1) \emph{\text{ (for internal nodes)}} + n \lc \log n \rc \Rightarrow \underline{2n - 1 + n \lc \log n \rc \text{ bits}} \]
@@ -132,6 +132,24 @@ $\Rightarrow$ Total bits needed to represent optimal preﬁx-free code on $C =$
 
 % PROBLEM 3
 \newproblem
+\underline{Proof by contradiction:} Suppose greedy is not optimal solution.
 
+Consider the solution given by the greedy algorithm as a sequence of packages, here represented by indexes: $1, 2, 3, ... n$.
+Each package $i$ has a weight, $w_i$, and an assigned truck $t_i$ which is a non-decreasing sequence (as the $k^{th}$ truck is sent out before anything is placed on the $(k+1)^{th}$ truck).
+
+Note that: If $t_n = m$, that means our solution takes $m$ trucks to send out the $n$ packages.
+
+If the greedy solution is non-optimal, then there exists another solution $t'_{i}$, with the same constraints, such that $t'_n = m' < t_n = m$.
+Consider the optimal solution that matches the greedy solution as long as possible, so $\forall i < k, t_i = t'_i, \text{ and } t_k \neq t'_k$ (that means, look for the largest $i$ such that: $t_i = t'_i$, and the number of trucks optimal solution takes to send out $k$ packages is not equal to what greedy algorithm is going to take).
+
+It leads to $2$ cases:
+
+\underline{Case $1$:} If $t'_k < t_k$, the greedy solution used more trucks than the optimal solution. As previously mentioned, $\forall$ $i < k, t_i = t'_i$, we know that until $i = (k-1)$, the optimal solution and greedy solution were carrying the same packages, however, the greedy solution used another truck for the $k^{th}$ package. Therefore, we have to add another truck in optimal solution too which leads to the contradiction as we get on the optimal solution with a larger $t'_k$.
+
+\underline{Case $2$:} If $t'_k > t_k$, the optimal solution used more trucks than the greedy solution. We get a contradiction here because greedy solution carried $k$ packages in less number of trucks than the optimal solution which is a contradiction of optimality that greedy solution used less number of trucks than the optimal solution.
+
+(Note that, if $t'_k = t_k$, then greedy solution would be already considered as an optimal solution.)
+
+Therefore, the greedy algorithm is the optimal solution that actually minimizes the number of trucks that are needed.
 
 \end{document} 
