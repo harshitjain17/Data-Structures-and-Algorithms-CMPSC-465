@@ -64,6 +64,59 @@
 
 % PROBLEM 1
 \newproblem
+\begin{algorithm}
+    
+    \caption{GREEDY-HORN}
+
+    \SetKwInOut{KwIn}{Input}
+    \SetKwInOut{KwOut}{Output}
+
+    \KwIn{set of Horn clauses}
+    \KwOut{either the assignment or "unsatisfiable"}
+    
+    Set all variables to $0$;
+
+    \While{$\exists$ an "$\implies$" that is not satisfied}{
+        Set its RHS to $1$;
+    }
+    
+    \If{all pure negative clauses are $1$}{
+        \Return{ the assignment}
+    }
+    
+    \Else{
+        \Return{"unsatisfiable"}
+    }
+
+\end{algorithm}
+
+\begin{enumerate}[label=(\alph*)]
+    
+    \item 
+    According to the algorithm, first set all variables to $0 \implies$ \[w=0, x=0, y=0, z=0\]
+    
+    Now there are $5$ clauses having "$\implies$" out of which $4^{th}$ clause ($\implies x$) is not satified. So, we will set RHS of this clause to $1$, that is, $\textbf{x=1}$.
+
+    This will lead to reconsidering the assignment of $y$ because according to $3^{rd}$ clause ($x \implies y$), if LHS is True then RHS should be set to $1$, that is, $\textbf{y=1}$.
+
+    This will lead to reconsidering the assignment of $w$ because according to $5^{th}$ clause ($x \land y \implies w$), if LHS is True then RHS should be set to $1$, that is, $\textbf{w=1}$.
+    
+    This will lead to reconsidering the assignment of $z$ because according to $1^{st}$ clause ($w \land y \land z \implies x$), if RHS is True then LHS should be resolved to $1$, that is, $\textbf{z=1}$.
+    
+    Now, pure negative clauses are failed to satisfy, so there is no satisfying assignment, hence algorithm will return \textbf{"unsatisfiable"}.
+    
+    \item
+    According to the algorithm, first set all variables to $0 \implies$ \[w=0, x=0, y=0, z=0\]
+
+    Now there are $4$ clauses having "$\implies$" out of which $4^{th}$ clause ($\implies z$) is not satified. So, we will set RHS of this clause to $1$, that is, $\textbf{z=1}$.
+
+    This will lead to reconsidering the assignment of $w$ because according to $2^{nd}$ clause ($z \implies w$), if LHS is True then RHS should be set to $1$, that is, $\textbf{w=1}$.
+
+    Here, $x$ and $y$ need not to be changed since the implications are still satified with having $\textbf{x=0, y=0}$.
+
+    Now, pure negative clauses are still $1$ and hence, satisfied. So, the algorithm will return the assigment \[\textbf{w=1, x=0, y=0, z=1}\]
+
+\end{enumerate}
 
 
 % PROBLEM 2
