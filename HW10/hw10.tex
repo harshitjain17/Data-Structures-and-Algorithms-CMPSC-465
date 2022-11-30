@@ -141,8 +141,24 @@
     \KwIn{A list of numbers $S = a_1, a_2, a_3, \cdots, a_n$}
     \KwOut{The contiguous subsequence of maximum sum}
     
+    Set maximumSum $=$ Sum$[1]$ \Comment*[r]{maximum sum of subsequence}
+    Set start $= 1$ \Comment*[r]{starting index of max subsequence}
+    Set end $= 1$ \Comment*[r]{ending index of max subsequence}
     
+    \For{j = 2 to n}{
+        Sum$[j] =$ max(Sum$[j-1]+S[j], S[j]$)
+        
+        \If{Sum[j] $>$ maximumSum}{
+            
+            maximumSum $=$ Sum$[j]$
+            
+            \If{Sum[j-1] $\leq$ 0}{
+                start $= j$
+            }
 
+            end $= j$
+        }
+    }
 \end{algorithm}
 
 \underline{Explanation:}
