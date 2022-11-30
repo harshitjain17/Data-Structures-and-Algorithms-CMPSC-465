@@ -122,6 +122,31 @@
 % PROBLEM 2
 \newproblem
 
+\underline{Subproblem $\rightarrow$ Notation:} Sum$(j) =$ maximum sum of contigious subsequence ending at index $j$ in the list $S$ where $1 \leq j \leq n$.
+
+\underline{Recurrence $\rightarrow$ Computing Sum$(j)$:} \[ \text{Sum}(j) = \text{max} \{\text{Sum}(j-1) + S[j], S[j]\} \text{ where } 1 \leq j \leq n \] 
+
+\underline{Base Case:} Sum$(0) = 0$, Sum$(1) = S[1]$ (indexing starts from $1$ and goes till $n$)
+
+\underline{Pseudocode:}
+
+\begin{algorithm}
+    
+    \caption{Contiguous Subsequence of Maximum Sum}
+    
+    \SetKwComment{Comment}{/* }{ */}
+    \SetKwInOut{KwIn}{Input}
+    \SetKwInOut{KwOut}{Output}
+
+    \KwIn{A list of numbers $S = a_1, a_2, a_3, \cdots, a_n$}
+    \KwOut{The contiguous subsequence of maximum sum}
+    
+    
+
+\end{algorithm}
+
+\underline{Explanation:}
+
 
 % PROBLEM 3
 \newproblem
