@@ -122,11 +122,15 @@
 % PROBLEM 2
 \newproblem
 
-\underline{Subproblem $\rightarrow$ Notation:} Sum$(j) =$ maximum sum of contigious subsequence ending at index $j$ in the list $S$ where $1 \leq j \leq n$.
+\underline{Subproblem $\rightarrow$ Notation:}
+
+Sum$(j) =$ maximum sum of contigious subsequence ending at index $j$ in the list $S$ where $1 \leq j \leq n$.
 
 \underline{Recurrence $\rightarrow$ Computing Sum$(j)$:} \[ \text{Sum}(j) = \text{max} \{\text{Sum}(j-1) + S[j], S[j]\} \text{ where } 1 \leq j \leq n \] 
 
-\underline{Base Case:} Sum$(0) = 0$, Sum$(1) = S[1]$ (indexing starts from $1$ and goes till $n$)
+\underline{Base Case:}
+
+Sum$(0) = 0$, Sum$(1) = S[1]$ (indexing starts from $1$ and goes till $n$)
 
 \underline{Pseudocode:}
 
@@ -146,7 +150,7 @@
     Set end $= 1$ \Comment*[r]{ending index of max subsequence}
     
     \For{j = 2 to n}{
-        Sum$[j] =$ max(Sum$[j-1]+S[j], S[j]$)
+        Sum$[j] =$ max(Sum$[j-1]+S[j], S[j]$) \Comment*[r]{Recurrence Formula}
         
         \If{Sum[j] $>$ maximumSum}{
             
@@ -159,14 +163,23 @@
             end $= j$
         }
     }
+    \Return{S[start:end]}
 \end{algorithm}
 
 \underline{Explanation:}
 
+The approach is to find the contiguous subsequence of maximum sum in a list $S$ by identifying the subproblem $Sum(j)$ which gives the maximum sum of contigious subsequence ending at index $j$ in the list $S$. In this algorithm, we iterate (iterator $j$, where $1 \leq j \leq n$) through the entire list $S$ and using the recurrence relation, we solve the subproblem $Sum(j)$ at each step which is stored in list $Sum$ and used at the next iteration to solve the following subproblem. $maximumSum$ variable keeps track of the maximum sum of contiguous subsequence and ($start$, $end$) keeps track of the indices of the contiguous subsequence of maximum sum. Lines $8-9$ states that, if $Sum(j-1)$ contains any negative value while $Sum(j)$ is the maximum sum known, then it is better off to start the indexing from there. Later, we return the sublist of contiguous subsequence of maximum sum using $start$, $end$ indices.
+
+\underline{Running Time:}
+
+We consider a linear number of subproblems, each of which can be solved using previously solved subproblems in constant time. Therefore, this algorithm gives a running time of $O(n)$.
+
 
 % PROBLEM 3
 \newproblem
-\underline{Subproblem $\rightarrow$ Notation:} LCS$(i, j) =$ length of the longest common substring for which there are indices $i$ and $j$ with $x_{i}x_{i+1} \cdots x_{i+k-1} = y_{j}y_{j+1} \cdots y_{j+k-1}$ where $1 \leq i \leq n$, $1 \leq j \leq m$.
+\underline{Subproblem $\rightarrow$ Notation:}
+
+LCS$(i, j) =$ length of the longest common substring for which there are indices $i$ and $j$ with $x_{i}x_{i+1} \cdots x_{i+k-1}$ $=$ $y_{j}y_{j+1} \cdots y_{j+k-1}$, where $1 \leq i \leq n$, $1 \leq j \leq m$.
 
 \underline{Recurrence $\rightarrow$ Computing LCS($i$, $j$):} 
     \begin{equation}
@@ -177,7 +190,9 @@
             \end{cases}
     \end{equation}
 
-\underline{Base Case:} LCS$(i, 0) = 0$, LCS$(0, j) = 0$
+\underline{Base Case:}
+
+LCS$(i, 0) = 0$, LCS$(0, j) = 0$
 
 \underline{Pseudocode:}
 
@@ -219,17 +234,15 @@
 
 
 
-
-
 \underline{Explanation:}
 
 The approach is to find the length of the longest common substring for all substrings of both the strings $x$ and $y$ and store these lengths in a table LCS. Each cell $(i,j)$ of the table LCS, that is, LCS$[i][j]$ either holds $0$ if $x[i] \neq y[j]$, or holds the length of the common substring of $x[0 \cdots i]$ and $y[0 \cdots j]$ if $x[i] = y[j]$, which is made up including $x[i]$ and $y[j]$. In that way, the table keeps track of all the common substrings available and returns the largest length of common substring available in the table.
 
 If the character happened to be the same while iterating through both the strings $x$ (interator $i$) and $y$ (interator $j$), then this algorithm checks for the similarity of until previous character of both the strings ($x[i-1] == y[j-1]$) which has already been stored in the table, and add $1$ to it which signifies $x[i] = y[j]$.
 
+\underline{Running Time:}
 
-
-
+We consider $n*m$ subproblems, each of which can be solved in a constant time using previously solved subproblems and base cases. Lines $4-17$ run in a constant $O(1)$ time, Line $3$ runs in $O(m)$ time and Line $2$ runs in $O(n)$ time. Therefore, this algorithm gives a running time of $O(nm)$.
 
 
 \end{document} 
