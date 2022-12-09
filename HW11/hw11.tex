@@ -69,5 +69,77 @@
 % PROBLEM 2
 \newproblem
 
+maximize $\Rightarrow$ $2x_1 + 7x_2 + x_3$
 
+subject to $\Rightarrow$ $x_1 - x_3 = 7$
+
+\tabto{58pt} $3x_1 + x_2 \geq 24$
+
+\tabto{58pt} $x_2 \geq 0$
+
+\tabto{58pt} $x_3 \leq 0$
+
+Here, ($x_1 - x_3 = 7$) will undergo equality to inequality which in turn make the constraints as ($x_1 - x_3 \leq 7$) and ($x_1 - x_3 \geq 7$).
+
+Now, ($x_1 - x_3 \geq 7$), ($3x_1 + x_2 \geq 24$) and ($x_3 \leq 0$) has the wrong inequality direction so we will multiple both sides by $-1$ to change the inequality which results into ($x_3 - x_1 \leq -7$), ($-3x_1 - x_2 \leq -24$), and ($-x_3 \geq 0$) (non-negative constraint).
+
+Here, non-negative constraint of $x_1$ is missing. So, $x_1 \geq 0$, $x_1 \leq 0$. We want to combine these two constraints in a way that we can enforce both these conditions together. We will rewrite $x_1 = x_1^{+} - x_1^{-}$ in all the above equations.
+
+Final answer:
+
+maximize $\Rightarrow$ $2(x_1^{+} - x_1^{-}) + 7x_2 + x_3$
+
+subject to $\Rightarrow$ $(x_1^{+} - x_1^{-}) - x_3 \leq 7$
+
+\tabto{58pt} $x_3 - (x_1^{+} - x_1^{-}) \leq -7$
+
+\tabto{58pt} $(-3)(x_1^{+} - x_1^{-}) - x_2 \leq -24$
+
+\tabto{58pt} $x_2 \geq 0$
+
+\tabto{58pt} $(-x_3) \geq 0$
+
+\tabto{58pt} $x_1^{+} \geq 0$
+
+\tabto{58pt} $x_1^{-} \geq 0$
+
+According to Standard form $1$:
+
+maximize $\Rightarrow$
+$
+    \begin{bmatrix}
+        2 & -2 & 7 & 1
+    \end{bmatrix}
+       \times
+    \begin{bmatrix}
+       x_1^{+}\\
+       x_1^{-}\\
+       x_2\\
+       x_3
+    \end{bmatrix}
+$
+
+Subject to $\Rightarrow$
+$
+     \begin{pmatrix}
+        1 & -1 & 0 & -1\\ 
+        -1 & 1 & 0 & 1\\
+        -3 & 3 & -1 & 0
+     \end{pmatrix}
+     \times
+     \begin{pmatrix}
+        x_1^{+}\\
+        x_1^{-}\\
+        x_2\\
+        x_3
+     \end{pmatrix}
+      =
+     \begin{pmatrix}
+         7\\ 
+         -7\\
+         -24
+     \end{pmatrix}
+  $
+
+  $x_1^{+}$, $x_1{-}$, $x_2$, $-x_3 \geq 0$
 \end{document} 
