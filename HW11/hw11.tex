@@ -64,6 +64,31 @@
 
 % PROBLEM 1
 \newproblem
+\begin{enumerate}[label=(\alph*)]
+    \item \underline{Objective Function:}
+
+    Let $x_{ij}$ be a variable representing whether client $i$ is served by server $j$. So, $x_{ij} = 0$ or $1$. The objective function is to minimize the total service cost, which is the sum of the service costs over all clients for the optimal solution. It is represented as: \[ \text{maximize }\sum_{i \in C} \sum_{j \in S} c_{ij} x_{ij}\].
+
+    \underline{Constraints:}
+
+    \begin{itemize}
+        \item Each client must be served by at least one server, which can be represented as: \[\sum_{j \in S} (x_{ij} \geq 1) \forall i \in C\].
+        \item At most, $k$ servers can be functional at a time, which can be represented as: \[\sum_{j \in S} (x_{ij} \leq k) \forall i \in C\].
+        \item The variable $x_{ij}$ can only take the values $0$ or $1$, which can be represented as: \[0 \leq x_{ij} \leq 1 \forall i \in C, j \in S\].
+    \end{itemize}
+    
+    \item \underline{Objective Function:}
+    
+    Let $y_i$ be continous variable representing the amount of service cost that must be provided to client $i$. The objective function is to maximize the total amount of service cost that can be provided to the clients, which can be represented as: \[ \text{maximize} \sum_{i \in C} y_i \]
+
+    \underline{Constraints:}
+
+    \begin{itemize}
+        \item The amount of service cost provided to each client must eb less than or equal to the service cost of the corresponding server, which can be represented as: \[y_i \leq c_{ij} \forall i \in C, j \in S\]
+        \item The total amount of service cost provided to all clients must be less than or equal to the total amount of service cost that can be provided by the $k$ servers, which can be represented as: \[(\sum_{i \in C} y_i) \leq (\sum_{j \in S} c_{ij}) \forall i \in C, j \in S\]
+        \item The continous variable $y_i$ must be non-negative which can be represented as: \[y_i \geq 0 \forall i \in C\]
+    \end{itemize}
+\end{enumerate}
 
 
 % PROBLEM 2
@@ -85,7 +110,7 @@ Now, ($x_1 - x_3 \geq 7$), ($3x_1 + x_2 \geq 24$) and ($x_3 \leq 0$) has the wro
 
 Here, non-negative constraint of $x_1$ is missing. So, $x_1 \geq 0$, $x_1 \leq 0$. We want to combine these two constraints in a way that we can enforce both these conditions together. We will rewrite $x_1 = x_1^{+} - x_1^{-}$ in all the above equations.
 
-Final answer:
+\underline{Final answer:}
 
 maximize $\Rightarrow$ $2(x_1^{+} - x_1^{-}) + 7x_2 + x_3$
 
@@ -121,25 +146,25 @@ $
 
 Subject to $\Rightarrow$
 $
-     \begin{pmatrix}
+    \begin{pmatrix}
         1 & -1 & 0 & -1\\ 
         -1 & 1 & 0 & 1\\
         -3 & 3 & -1 & 0
-     \end{pmatrix}
-     \times
-     \begin{pmatrix}
+    \end{pmatrix}
+    \times
+    \begin{pmatrix}
         x_1^{+}\\
         x_1^{-}\\
         x_2\\
         x_3
-     \end{pmatrix}
-      =
-     \begin{pmatrix}
-         7\\ 
-         -7\\
-         -24
-     \end{pmatrix}
-  $
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        7\\ 
+        -7\\
+        -24
+    \end{pmatrix}
+$
 
-  $x_1^{+}$, $x_1{-}$, $x_2$, $-x_3 \geq 0$
+\tabto{63pt} $x_1^{+}$, $x_1^{-}$, $x_2$, $-x_3 \geq 0$
 \end{document} 
