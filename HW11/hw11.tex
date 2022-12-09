@@ -74,7 +74,7 @@
     \begin{itemize}
         \item Each client must be served by at least one server, which can be represented as: \[\sum_{j \in S} (x_{ij} \geq 1) \forall i \in C\].
         \item At most, $k$ servers can be functional at a time, which can be represented as: \[\sum_{j \in S} (x_{ij} \leq k) \forall i \in C\].
-        \item The variable $x_{ij}$ can only take the values $0$ or $1$, which can be represented as: \[0 \leq x_{ij} \leq 1 \forall i \in C, j \in S\].
+        \item The variable $x_{ij}$ can only take the values $0$ or $1$, which can be represented as: \[x_{ij} \in \{0,1\} \forall i \in C, j \in S\].
     \end{itemize}
     
     \item \underline{Objective Function:}
@@ -84,7 +84,7 @@
     \underline{Constraints:}
 
     \begin{itemize}
-        \item The amount of service cost provided to each client must eb less than or equal to the service cost of the corresponding server, which can be represented as: \[y_i \leq c_{ij} \forall i \in C, j \in S\]
+        \item The amount of service cost provided to each client must be less than or equal to the service cost of the corresponding server, which can be represented as: \[y_i \leq c_{ij} \forall i \in C, j \in S\]
         \item The total amount of service cost provided to all clients must be less than or equal to the total amount of service cost that can be provided by the $k$ servers, which can be represented as: \[(\sum_{i \in C} y_i) \leq (\sum_{j \in S} c_{ij}) \forall i \in C, j \in S\]
         \item The continous variable $y_i$ must be non-negative which can be represented as: \[y_i \geq 0 \forall i \in C\]
     \end{itemize}
